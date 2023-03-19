@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+.carousel-preview{
+  width: 60%;
+  aspect-ratio: 2/1;
+}
+.carousel-drop{
+  display: table;
+  width: 200px;
+  height: 100px;
+  background-color: #eee;
+  border: dashed 1px #aaa;
+}
+.drop-text{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
