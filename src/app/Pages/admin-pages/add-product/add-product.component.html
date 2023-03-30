@@ -1,0 +1,59 @@
+<div class="container product-detail">
+    <h1 class="text-center pb-5">Add Product Details</h1>
+    <mat-card>
+        <form [formGroup]="prodData" (ngSubmit)="addProd()">
+          <div class="row">
+            <div class="col form-group">
+              <label for="product-name">Product Name</label>
+              <input type="text" class="form-control" id="prod-name" formControlName="productName" aria-describedby="prod-name">              
+            </div>  
+            <div class="col form-group">
+              <label for="product-category">Product Category</label>
+              <input type="text" class="form-control" id="prod-name" formControlName="productCategory" aria-describedby="prod-category">              
+            </div>  
+          </div>
+          <div class="row">
+            <div class="col form-group">
+                <label for="product-price">Base Price</label>
+                <input type="number" class="form-control" id="prod-name" formControlName="productBasePrice" aria-describedby="prod-base-price">              
+            </div>  
+            <div class="col form-group">
+              <label for="price-method">Pricing Method: </label>
+              <div class="row">
+                <div class="col">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="pricingMethod" id="pricingMethod1" value="weight">
+                    <label class="form-check-label" for="pricingMethod1">Weight</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="pricingMethod" id="pricingMethod2" value="number">
+                    <label class="form-check-label" for="pricingMethod2">Number</label>
+                  </div>
+                </div>                
+              </div>              
+            </div>              
+          </div>
+          <div class="row">
+            <div class="col form-group">
+                <label for="prod-description">Product Description</label>
+                <input type="text" class="form-control" id="prod-description" formControlName="productDescription" aria-describedby="prod-description">              
+            </div>  
+            <div class="col form-group">
+              <label for="prod-instruction">Product Instructions</label>
+              <input type="text" class="form-control" id="prod-instruction" formControlName="productInstructions" aria-describedby="prod-instruction">              
+            </div>              
+          </div>
+          <div class="row">
+            <div class="col form-group">
+              <input type="file" class="form-control-file prod-file" #selectProduct id="FormControlFile" (change)="prodSelect($event)">
+              <div class="prod-img-drop" appDragImage (files)="prodDrop($event)">
+                  <div class="drop-text">
+                    Drag & Drop or <a class="prod-img-browse text-decoration-none" (click)="selectProduct.click()">Browse</a>
+                  </div>
+              </div>
+            </div>
+          </div>           
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,7 @@
+.prod-image{
+    aspect-ratio: 1/1;
+}
+.product-card:hover{
+    scale: 1.02;
+    z-index: 9;
+}

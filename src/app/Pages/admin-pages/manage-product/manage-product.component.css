@@ -1,0 +1,10 @@
+table {
+  width: 100%;
+}  
+th.mat-sort-header-sorted {
+  color: black;
+}
+.product-list{
+  padding-top: 100px;
+  padding-bottom: 100px;
+}

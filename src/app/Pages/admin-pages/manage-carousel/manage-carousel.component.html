@@ -4,28 +4,26 @@
       <h2>Carousel</h2>
     </div>
     <div class="card-body">
-      <form enctype="multipart/form-data">
-        <div class="row">
+      <form enctype="multipart/form-data" [formGroup]="carouselData" (ngSubmit)="prepareCarouselForm()">
+        <div class="row align-items-center">
           <div class="col">
-            <input type="text" class="form-control" name="carouselName" placeholder="Carousel Image Name">
-          </div>
-          <div class="col">          
-            <div class="form-group">
-              <input type="file" class="form-control-file" #selectCarousel value="choose carousel image" id="FormControlFile" (change)="carouselSelect($event)">
-              <!-- <img src="" alt="Girl in a jacket" width="100" height="100"> -->
-            </div>          
+            <input type="text" class="form-control" formControlName="carouselName" placeholder="Carousel Image Name">
           </div>
           <div class="col">
-            <div class="carousel-drop" appDragImage (files)="imageDrop($event)">
+            <input type="file" class="form-control-file selct-carousel" #selectCarousel value="choose carousel image" id="FormControlFile" (change)="carouselSelect($event)">
+            <div class="carousel-drop" appDragImage (files)="carouselDrop($event)">
               <div class="drop-text">
-                Drag & Drop or <a (click)="selectCarousel.click()">Browse</a>
+                Drag & Drop or <a class="carousel-img-browse" (click)="selectCarousel.click()">Browse</a>
               </div>
             </div>
           </div>
           <div class="col">
-            <button type="submit" class="btn btn-primary" (click)="addCarousel()">Add Carousel</button>            
+            <mat-slide-toggle>Slide Toggle Checked: {{carouselActive}}</mat-slide-toggle>            
           </div>
           <div class="col">
+            <button type="submit" class="btn btn-primary">Add Carousel</button>            
+          </div>
+          <div class="col" *ngIf="path">
             <img class="carousel-preview" [src]="path" alt="Carusel Image">
           </div>
         </div>

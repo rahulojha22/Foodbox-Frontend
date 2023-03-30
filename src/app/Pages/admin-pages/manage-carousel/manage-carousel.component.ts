@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { fileHandler } from 'src/app/Models/fileHandler';
 import { AdminService } from 'src/app/Services/admin.service';
 
@@ -47,71 +48,108 @@ export class ManageCarouselComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
   carousel: {carouselName: string} = {carouselName: ''};
   carouselImage: { name: string, carouselImg: fileHandler[]} = { name: '', carouselImg: [] };
-  carouselFormData: any;
+  // carouselFormData: any;
   carouselIm: any;
-  path: any = 'http://localhost:8084/admin/downloadCarousel/Rahul.jpg';
-  
+  path: any;
+
+  carouselImageData!: fileHandler;
+  carouselActive = true;
+  ifs = '';
+  carouselData = new FormGroup({
+                                carouselName: new FormControl()
+                              });
+  carouselFormData = new FormData();  
 
   // @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private adminApi: AdminService, private sanitizer: DomSanitizer) { 
-    this.adminApi.getCarousel().subscribe(() => {
-      // this.carouselIm = response;
-      console.log("A");
-      // this.path = this.sanitizer.bypassSecurityTrustUrl(
-      //     window.URL.createObjectURL(response)
-      //   );
-      //   console.log(this.path);
-    });  
-    
-    // this.path = this.sanitizer.bypassSecurityTrustUrl(
-    //   window.URL.createObjectURL(this.carouselIm)
-    // )
+  constructor(private adminApi: AdminService, private sanitizer: DomSanitizer, private router: Router) { 
+    // this.adminApi.getCarousel().subscribe((response: any) => {
+    //   this.carouselIm = response;
+    //   console.log(response);      
+    //   this.createCarouselImage();  
+    // });       
   }
 
   ngOnInit(): void {
     // this.dataSource.paginator = this.paginator;
-  }  
+  } 
 
-  addCarousel(){
-    this.adminApi.addCarousel(this.carouselFormData).subscribe((response: any) => {
-      console.log(response);
-    })
-    
-  }
-
-  carouselSelect(event: any){
-    if(event.target.files){
-      const file = event.target.files[0];
-      const fileHandle: fileHandler = {
+  carouselSelect(carouselImage: any){
+    if(carouselImage.target.files){
+      const file = carouselImage.target.files[0];
+      this.carouselImageData = {
         file: file,
         url: this.sanitizer.bypassSecurityTrustUrl(
           window.URL.createObjectURL(file)
         )
-      }
-      console.log(file);
-      this.carousel.carouselName = file.name;
-      this.carouselImage.name = file.name;
-      this.carouselImage.carouselImg.push(fileHandle);
-      console.log(this.carouselImage);
+      }      
     }
-    this.carouselFormData = this.prepareCarouselForm();
-    console.log(this.carouselFormData);
+    // if(event.target.files){
+    //   const file = event.target.files[0];
+    //   const fileHandle: fileHandler = {
+    //     file: file,
+    //     url: this.sanitizer.bypassSecurityTrustUrl(
+    //       window.URL.createObjectURL(file)
+    //     )
+    //   }
+    //   console.log(file);
+    //   this.carousel.carouselName = file.name;
+    //   this.carouselImage.name = file.name;
+    //   this.carouselImage.carouselImg.push(fileHandle);
+    //   console.log(this.carouselImage);
+    // }
+    // this.carouselFormData = this.prepareCarouselForm();
+    // console.log(this.carouselFormData);
   }
 
-  prepareCarouselForm(): FormData{
-    const carouselForm = new FormData();
-    carouselForm.append(
-      'carousel', new Blob([JSON.stringify(this.carousel)], {type: 'application/json'})
-    );
-    carouselForm.append(
-      'carouselImage', this.carouselImage.carouselImg[0].file
-    );
-    return carouselForm;
+  carouselDrop(carouselImage: any){
+    this.carouselImageData = {
+      file: carouselImage.file,
+      url: carouselImage.url
+    }
   }
 
-  imageDrop(event: any){
-    console.log(event);
+  prepareCarouselForm(){
+    this.carouselFormData.append('carouselData', new Blob([JSON.stringify(this.carouselData.value)], {type: 'application/json'}));
+    this.carouselFormData.append('carouselImage', this.carouselImageData.file);
+    this.addCarousel();
+  }
+
+  addCarousel(){    
+    this.adminApi.addCarousel(this.carouselFormData).subscribe((response: any) => {
+      console.log(response);
+      
+    })    
+  }
+
+  // prepareCarouselForm(): FormData{
+  //   const carouselForm = new FormData();
+  //   carouselForm.append(
+  //     'carousel', new Blob([JSON.stringify(this.carousel)], {type: 'application/json'})
+  //   );
+  //   carouselForm.append(
+  //     'carouselImage', this.carouselImage.carouselImg[0].file
+  //   );
+  //   return carouselForm;
+  // }  
+
+  createCarouselImage(){
+    const carouselBlob = this.carouselURItoBlob();
+    const carouselImageFile = new File([carouselBlob], 'Rahul.jpg', {type: 'image/jpg'});
+    const carouselImageFileUrl = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(carouselImageFile));
+    const carouselImageFileHandle: fileHandler = {file: carouselImageFile, url: carouselImageFileUrl};
+    this.path = carouselImageFileUrl;
+  }
+
+  carouselURItoBlob(){
+    const byteString = window.atob(this.carouselIm.picByte);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for(let i=0; i<byteString.length; i++){
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/jpg'});
+    return blob;
   }
 
 }

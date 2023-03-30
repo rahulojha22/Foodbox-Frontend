@@ -20,4 +20,12 @@ export class PublicService {
     return this.http.get(`${this.publicUrl}/user/login`);
   }
 
+  public getCarousel(): Observable<any>{
+    return this.http.get(`${this.publicUrl}/getActiveCarousel`);
+  }
+
+  public getProductList(): Observable<any>{
+    return this.http.get(`${this.publicUrl}/getActiveProduct`);
+  }
+
 }

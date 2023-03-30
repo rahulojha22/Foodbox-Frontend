@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddProductComponent } from 'src/app/Pages/admin-pages/add-product/add-product.component';
 import { HomePageComponent } from 'src/app/Pages/admin-pages/home-page/home-page.component';
 import { ManageCarouselComponent } from 'src/app/Pages/admin-pages/manage-carousel/manage-carousel.component';
 import { ManageOrderComponent } from 'src/app/Pages/admin-pages/manage-order/manage-order.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'order',                 component: ManageOrderComponent },
     { path: 'sales',                 component: SalesReportComponent },
     { path: 'product',               component: ManageProductComponent },
+    { path: 'add-product',           component: AddProductComponent },
   ]}
 ];
 

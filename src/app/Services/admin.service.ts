@@ -13,11 +13,15 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   public addCarousel(carousel: FormData): Observable<any>{
-    return this.http.post(`${this.adminUrl}/uploadCarouselImage`, carousel);
+    return this.http.post(`${this.adminUrl}/addCarousel`, carousel);
   }
 
   public getCarousel(): Observable<any>{
-    return this.http.get(`${this.adminUrl}/downloadCarousel/Rahul.jpg`);
+    return this.http.get(`${this.adminUrl}/downloadCarouselImage/Rahul.jpg`);
+  }
+
+  public addProduct(product: FormData): Observable<any>{
+    return this.http.post(`${this.adminUrl}/addProduct`, product);
   }
 
 }

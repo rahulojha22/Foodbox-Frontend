@@ -26,6 +26,13 @@ import { AdminFooterComponent } from './Components/admin-components/admin-footer
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import { DragImageDirective } from './directives/drag-image.directive'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { AddProductComponent } from './Pages/admin-pages/add-product/add-product.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -48,7 +55,8 @@ import { DragImageDirective } from './directives/drag-image.directive'
     LoginComponent,
     SignUpComponent,
     AdminFooterComponent,
-    DragImageDirective
+    DragImageDirective,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +65,13 @@ import { DragImageDirective } from './directives/drag-image.directive'
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

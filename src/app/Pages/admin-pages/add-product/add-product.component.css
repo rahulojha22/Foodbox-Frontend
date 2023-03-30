@@ -1,0 +1,24 @@
+.product-detail{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.prod-img-drop{
+    display: table;
+    width: 200px;
+    height: 200px;
+    background-color: #eee;
+    border: dashed 1px #aaa;
+  }
+  .prod-img-browse{
+    color: #dc3545;
+    cursor: pointer;
+  }
+  .drop-text{
+    color: #dc3545;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .prod-file{
+    display: none;
+  }
