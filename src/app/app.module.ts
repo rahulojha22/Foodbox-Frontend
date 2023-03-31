@@ -33,6 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddProductComponent } from './Pages/admin-pages/add-product/add-product.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatButtonModule,
     MatFormFieldModule,
     MatSlideToggleModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
