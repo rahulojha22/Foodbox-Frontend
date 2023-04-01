@@ -16,7 +16,7 @@
         <a class="nav-link active" data-toggle="modal" data-target="#staticBackdrop" href="#" (click)="modalCard='login'">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="cart-size fa fa-shopping-cart" aria-hidden="true"></i> Cart</a>
+        <a class="nav-link" href="javascript:void(0)" routerLink="/user/cart"><i class="cart-size fa fa-shopping-cart" aria-hidden="true"></i> Cart</a>
       </li>      
     </ul>
     <!-- Modal login -->
@@ -42,8 +42,8 @@
     </div>
   </div>
 </nav>
-<div class="container-sm container-fluid">
+<div class="container-sm container-fluid" *ngIf="viewCategory()">
   <div class="d-flex flex-row justify-content-center">
-    <div>A</div>
+    <div>AA</div>
   </div>
 </div>

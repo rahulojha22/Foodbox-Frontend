@@ -33,6 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddProductComponent } from './Pages/admin-pages/add-product/add-product.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CartComponent } from './Pages/user-pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     SignUpComponent,
     AdminFooterComponent,
     DragImageDirective,
-    AddProductComponent
+    AddProductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
