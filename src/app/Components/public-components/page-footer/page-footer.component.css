@@ -5,3 +5,13 @@
     color: #fff;
     font-weight: 200;
 }
+.footer-heading{
+    color: #e6ddddcc;
+}
+.line-style{
+    border: 1px solid #fff;
+}
+.footer-clr p a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
