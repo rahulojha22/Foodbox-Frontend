@@ -33,11 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddProductComponent } from './Pages/admin-pages/add-product/add-product.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-<<<<<<< HEAD
 import { CartComponent } from './Pages/user-pages/cart/cart.component';
-=======
 import { MatTooltipModule } from '@angular/material/tooltip';
->>>>>>> 65cfe56b73cbe7f33a060ccdf0867e04b70a7de5
 
 @NgModule({
   declarations: [
