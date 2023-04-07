@@ -3,7 +3,7 @@
         <div class="col">
             <h2 class="text-center">
               Login
-              <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close text-right" data-dismiss="modal" #dismissModal aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
             </h2>
@@ -23,7 +23,7 @@
         </div>        
         <div class="row py-2">
           <div class="col">
-              <button type="submit" class="btn btn-danger col-12">Login</button>            
+              <button type="submit" class="btn btn-danger col-12" (click)="dismissModal.click()">Login</button>            
           </div>                        
         </div>        
         <div class="row p-2">

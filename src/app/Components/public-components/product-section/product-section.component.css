@@ -5,3 +5,32 @@
     scale: 1.02;
     z-index: 9;
 }
+.btn-style{
+    font-size: small;
+}
+.input-quantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;    
+}
+.input-quantity{
+    text-align: center;
+}
+.qty-box{
+    position: relative;
+    height: 70%;
+}
+.minus-btn{
+    position: absolute;
+    left: 0;
+    height: 70%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+}
+.plus-btn{
+    position: absolute;
+    right: 0;
+    height: 70%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+}

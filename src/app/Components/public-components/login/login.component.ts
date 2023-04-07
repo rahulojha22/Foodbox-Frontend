@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PublicService } from 'src/app/Services/public.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
                                     userPassword  : new FormControl(),
                                   })
 
-  constructor(private publicApi: PublicService) { }
+  constructor(private publicApi: PublicService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -26,8 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(){
-    this.publicApi.userLogin().subscribe((result:any) => {
-      console.log(result);
+    this.publicApi.userAuthenticate(this.userLoginDetail.value).subscribe((response:any) => {
+      let token = JSON.stringify(response);
+      localStorage.setItem("user", 'Bearer ' + token);
+      this.router.navigate(['/user/landing']);
     })
   }
 

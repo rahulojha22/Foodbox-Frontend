@@ -10,6 +10,9 @@ import { PublicService } from 'src/app/Services/public.service';
 export class ProductSectionComponent implements OnInit {
 
   productList: any = [];
+kg: any;
+pack: any;
+piece: any;
 
   constructor(private publicApi: PublicService, private sanitizer: DomSanitizer) { 
     this.publicApi.getProductList().subscribe((response: any) => {

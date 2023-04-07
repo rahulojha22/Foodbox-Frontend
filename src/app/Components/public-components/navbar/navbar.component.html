@@ -12,12 +12,15 @@
       </li>      
     </ul>
     <ul class="nav justify-content-end">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!userLogin()">
         <a class="nav-link active font-clr" data-toggle="modal" data-target="#staticBackdrop" href="#" (click)="modalCard='login'">Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link font-clr" href="javascript:void(0)" routerLink="/user/cart"><i class="cart-size fa fa-shopping-cart" aria-hidden="true"></i> Cart</a>
-      </li>      
+      </li>
+      <li class="nav-item" *ngIf="userLogin()">
+        <a class="nav-link font-clr" href="javascript:void(0)" routerLink="/user/cart"><i class="fa fa-regular fa-user"></i> UserName</a>
+      </li>
     </ul>
     <!-- Modal login -->
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

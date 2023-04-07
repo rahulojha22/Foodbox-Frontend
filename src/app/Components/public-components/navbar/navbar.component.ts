@@ -9,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   modalCard: string = 'login';
+  user: any;
 
   constructor(private location: Location) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+  }
+
+  userLogin(){
+    this.user = localStorage.getItem('user');
+    if(this.user){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   modalType(cardType: any){
