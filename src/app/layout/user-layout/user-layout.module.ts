@@ -9,6 +9,7 @@ import { UserLayoutRoutingModule } from './user-layout-routing.module';
   imports: [
     CommonModule,
     UserLayoutRoutingModule
-  ]
+  ],
+  providers: [],
 })
 export class UserLayoutModule { }

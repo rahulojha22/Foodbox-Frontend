@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <div class="d-flex flex-row bd-highlight p-4 mb-3">
+        <div class="p-2 col-8 bd-highlight">
+          
+            <div class="card">
+              <div class="card-header text-center">
+                Order Summary
+              </div>              
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="form-group">
+                      <label for="deliveryAddress">Delivery Address</label>
+                      <input type="text" class="form-control" id="address" [(ngModel)]="deliveryAddress" name="deliveryAddress" aria-describedby="address">
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                        <div class="card product-card col-4 p-3">
+                          
+                            <div class="card-body">
+                              <h2 class="card-title mb-2">{{product.productName}}</h2>
+                              <p class="card-text">{{product.productDescription}}</p>
+                              <div class="row align-items-center p-2">
+                                <div class="col-6">
+                                  <p class="card-text font-weight-bold text-monospace">{{product.productBasePrice | currency: 'INR': true: '1.0-2'}}
+                                    <span *ngIf="product.pricingMethod==='weight'">/ kg</span>
+                                    <span *ngIf="product.pricingMethod==='pack'">/ pack</span>
+                                    <span *ngIf="product.pricingMethod==='number'">/ piece</span>
+                                  </p>
+                                </div>
+                                <div class="col-6">
+                                  <div class="row align-items-center">
+                                    <div class="form-group">
+                                      <select class="form-control" [(ngModel)]="productQuantity" name="productQuantity" id="selectQuantity">
+                                        <option *ngFor="let item of [].constructor(10); let i = index" value="{{product.minOrder+(product.orderSteps*i)}}">{{product.minOrder+(product.orderSteps*i)}}</option>                                                     
+                                      </select>                          
+                                    </div>
+                                    <div>
+                                      <p *ngIf="product.pricingMethod==='weight'">&nbsp;gm</p>
+                                    </div>                 
+                                  </div>                      
+                                </div>                  
+                              </div>                                                            
+                            </div>
+                                        
+                        </div>
+                  </div>
+                  </li>                
+                </ul>                       
+              <div class="card-footer">
+                <button (click)="order()" class="btn buy-btn float-right">Buy All</button>
+              </div>
+            </div>
+          
+        </div>
+        <div class="p-2 col-4 bd-highlight">
+            <div class="card">
+              <div class="card-header">
+                Price Details
+              </div>
+              <div class="card-body">
+                Total Price = {{productQuantity*product.productBasePrice/1000 | currency: 'INR'}}
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,9 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(){
-    this.publicApi.userAuthenticate(this.userLoginDetail.value).subscribe((response:any) => {
-      let token = JSON.stringify(response);
-      localStorage.setItem("user", 'Bearer ' + token);
+    this.publicApi.userLogin(this.userLoginDetail.value.userEmail, this.userLoginDetail.value.userMobNumber, this.userLoginDetail.value.userPassword).subscribe((response:any) => {
+      localStorage.setItem("user", JSON.stringify(response));
       this.router.navigate(['/user/landing']);
     })
   }

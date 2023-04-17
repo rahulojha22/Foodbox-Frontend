@@ -1,0 +1,8 @@
+.buy-btn{
+    background-color: rgb(251, 100, 27);
+    color: #fff;
+}
+.buy-btn:hover{
+    background-color: rgb(234, 82, 7);
+    color: #fff;
+}

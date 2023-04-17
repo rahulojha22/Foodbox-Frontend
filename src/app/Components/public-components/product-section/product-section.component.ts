@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { PublicService } from 'src/app/Services/public.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-product-section',
@@ -10,11 +12,11 @@ import { PublicService } from 'src/app/Services/public.service';
 export class ProductSectionComponent implements OnInit {
 
   productList: any = [];
-kg: any;
-pack: any;
-piece: any;
+  kg: any;
+  pack: any;
+  piece: any;
 
-  constructor(private publicApi: PublicService, private sanitizer: DomSanitizer) { 
+  constructor(private publicApi: PublicService, private userApi: UserService, private sanitizer: DomSanitizer, private router: Router) { 
     this.publicApi.getProductList().subscribe((response: any) => {
       this.createProductList(response);
     })
@@ -33,6 +35,8 @@ piece: any;
                             productCategory: productData[i].productCategory,
                             productBasePrice: productData[i].productBasePrice,
                             pricingMethod: productData[i].pricingMethod,
+                            minOrder: productData[i].minOrder,
+                            orderSteps: productData[i].orderSteps,
                             productActive: productData[i].productActive,
                             productDescription: productData[i].productDescription,                            
                             productInstructions: productData[i].productInstructions,                            
@@ -52,6 +56,19 @@ piece: any;
     }
     const blob = new Blob([int8Array], { type: productImageType});
     return blob;
+  }
+
+  addToCart(productId: any, productQuantity: any){
+    let user: any = localStorage.getItem('user'); 
+    let userId: any = JSON.parse(user).userId;
+    this.userApi.addToCart(userId, productId, productQuantity).subscribe((response: any) => {
+      console.log(response);
+    })
+  }
+
+  buyNow(product: any){
+    localStorage.setItem('product', JSON.stringify(product));
+    this.router.navigate(['/user/order-summary']);
   }
 
 }

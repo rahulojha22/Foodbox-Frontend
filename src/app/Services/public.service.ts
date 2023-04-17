@@ -13,15 +13,11 @@ export class PublicService {
   constructor(private http: HttpClient) { }
 
   public userSignUp(user: any): Observable<any>{
-    return this.http.post(`${this.publicUrl}/user/register`, user);
+    return this.http.post(`${this.publicUrl}/user/signup`, user);
   }
 
-  public userAuthenticate(loginData: any): Observable<any>{
-    return this.http.post(`${this.publicUrl}/user/authenticate`, loginData);
-  }
-
-  public userLogin(): Observable<any>{
-    return this.http.get(`${this.publicUrl}/user/login`);
+  public userLogin(userEmail: any, userMobNumber: any, userPassword: any): Observable<any>{
+    return this.http.get(`${this.publicUrl}/user/login/${userEmail}/${userMobNumber}/${userPassword}`);
   }
 
   public getCarousel(): Observable<any>{

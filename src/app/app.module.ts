@@ -35,6 +35,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CartComponent } from './Pages/user-pages/cart/cart.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OrderSummaryComponent } from './Pages/user-pages/order-summary/order-summary.component';
+import { PaymentPageComponent } from './Pages/user-pages/payment-page/payment-page.component';
+import { OrderPageComponent } from './Pages/user-pages/order-page/order-page.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AdminFooterComponent,
     DragImageDirective,
     AddProductComponent,
-    CartComponent
+    CartComponent,
+    OrderSummaryComponent,
+    PaymentPageComponent,
+    OrderPageComponent
   ],
   imports: [
     BrowserModule,
